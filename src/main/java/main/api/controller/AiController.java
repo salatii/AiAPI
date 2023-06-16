@@ -6,8 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import main.api.Manager;
 import main.api.data.Article;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +69,14 @@ public class AiController {
 
     @RequestMapping("/summary")
     public String getSummary(@RequestBody Article body) {
-        return "summary";
+        Manager manager = new Manager("summary", body.getContent());
+        JSONArray nodes = new JSONArray();
+        try {
+            List<String> result = manager.runPython();
+            result.forEach(line -> nodes.put(line));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nodes.toString();
     }
 }
