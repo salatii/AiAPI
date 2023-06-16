@@ -58,7 +58,15 @@ public class AiController {
 
     @RequestMapping("/keywords")
     public String getKeywords(@RequestBody Article body) {
-        return "keywords";
+        Manager manager = new Manager("keywords", body.getContent());
+        JSONArray nodes = new JSONArray();
+        try {
+            List<String> result = manager.runPython();
+            result.forEach(line -> nodes.put(line));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nodes.toString();
     }
 
     @RequestMapping("/summary")
