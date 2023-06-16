@@ -6,13 +6,28 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class Manager {
-    String scriptName;
-    String args;
+    String scriptName = "default";
+    String arg1 = "";
+    String arg2 = "";
+    String arg3 = "";
+
     public Manager(String scriptName) { this.scriptName = scriptName; }
 
-    public Manager(String scriptName, String args) {
+    public Manager(String scriptName, String arg1) {
         this.scriptName = scriptName;
-        this.args = args;
+        this.arg1 = arg1;
+    }
+    public Manager(String scriptName, String arg1, String arg2) {
+        this.scriptName = scriptName;
+        this.arg1 = arg1;
+        this.arg2 = arg2;
+    }
+
+    public Manager(String scriptName, String arg1, String arg2, String arg3) {
+        this.scriptName = scriptName;
+        this.arg1 = arg1;
+        this.arg2 = arg2;
+        this.arg3 = arg3;
     }
 
     public void setScriptName(String scriptName) { this.scriptName = scriptName; }
@@ -21,19 +36,21 @@ public class Manager {
         return scriptName;
     }
 
-    public void setArgs(String args) {
-        this.args = args;
+    public void setArgs(String arg1) {
+        this.arg1 = arg1;
     }
 
-    public String getArgs() {
-        return args;
+    public String getArg1() {
+        return this.arg1;
     }
 
     public List<String> runPython() throws IOException {
         String[] cmd = {
                 "python",
-                "C:/Users/natha/IdeaProjects/demo/src/main/java/com/example/demo/python/"+scriptName+".py",
-                this.args,
+                "C:/Users/natha/Documents/GitHub/AiAPI/python/python_scripts/"+scriptName+".py",
+                this.arg1,
+                this.arg2,
+                this.arg3,
         };
         Process process = Runtime.getRuntime().exec(cmd);
         BufferedReader reader = new BufferedReader(
