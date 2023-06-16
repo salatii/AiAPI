@@ -56,7 +56,19 @@ public class AiController {
 
     @RequestMapping(value="/translation", method = RequestMethod.GET)
     public String getTranslation(@RequestParam("language") Optional<String> t_language, Article body) {
-        return "translation";
+        if( t_language.isPresent()){
+            Manager manager = new Manager("translation_de_en", body.getContent());
+            JSONArray nodes = new JSONArray();
+            try {
+                List<String> result = manager.runPython();
+                result.forEach(line -> nodes.put(line));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return nodes.toString();
+        }  else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("HTTP Status will be CREATED (CODE 201)\n").toString();
+        }
     }
 
     @RequestMapping("/keywords")
