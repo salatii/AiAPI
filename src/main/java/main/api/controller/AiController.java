@@ -18,18 +18,6 @@ import java.util.Optional;
 
 @RestController
 public class AiController {
-    @RequestMapping("/main")
-    public String getMain() {
-        Manager manager = new Manager("main", "arg1", "arg2", "arg3");
-        try {
-            List<String> result = manager.runPython();
-            result.forEach(entry -> System.out.println(entry));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "main";
-    }
-
     @RequestMapping("/rss")
     public String getRss() {
         Manager manager = new Manager("rss");
