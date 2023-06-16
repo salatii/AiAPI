@@ -1,1 +1,3 @@
 main\api\Application.class
+main\api\controller\AiController.class
+main\api\DataStructure\Article.class
