@@ -10,10 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,9 +52,9 @@ public class AiController {
     }
 
     @RequestMapping(value="/translation", method = RequestMethod.GET)
-    public String getTranslation(@RequestParam("language") Optional<String> t_language, Article body) {
+    public String getTranslation(@RequestParam("language") Optional<String> t_language, @RequestBody Article body) {
         if( t_language.isPresent()){
-            Manager manager = new Manager("translation_de_en", body.getContent());
+            Manager manager = new Manager("translation", t_language.get(), body.getContent());
             JSONArray nodes = new JSONArray();
             try {
                 List<String> result = manager.runPython();
@@ -72,12 +69,12 @@ public class AiController {
     }
 
     @RequestMapping("/keywords")
-    public String getKeywords(Article body) {
+    public String getKeywords(@RequestBody Article body) {
         return "keywords";
     }
 
     @RequestMapping("/summary")
-    public String getSummary(Article body) {
+    public String getSummary(@RequestBody Article body) {
         return "summary";
     }
 }
