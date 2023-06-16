@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### python repo ###
+python
+
 ### STS ###
 .apt_generated
 .classpath
