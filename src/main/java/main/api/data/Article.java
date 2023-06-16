@@ -1,4 +1,4 @@
-package main.api.DataStructure;
+package main.api.data;
 
 import java.util.ArrayList;
 import java.util.List;

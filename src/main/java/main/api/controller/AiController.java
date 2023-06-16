@@ -1,6 +1,6 @@
 package main.api.controller;
 
-import main.api.DataStructure.Article;
+import main.api.data.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
