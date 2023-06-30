@@ -3,6 +3,7 @@ package main.api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Manager {
@@ -45,9 +46,10 @@ public class Manager {
     }
 
     public List<String> runPython() throws IOException {
+        String rootPath = System.getProperty("user.dir").replace("\\", "/");
         String[] cmd = {
                 "python",
-                "C:/Users/natha/Documents/GitHub/AiAPI/python/python_scripts/"+scriptName+".py",
+                rootPath+"/python/python_scripts/"+scriptName+".py",
                 this.arg1,
                 this.arg2,
                 this.arg3,
