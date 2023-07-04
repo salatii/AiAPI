@@ -15,7 +15,7 @@
     <name>AiAPI</name>
     <description>Project that provides an API to control various AI based tasks like translation, keyword extraction and much more. </description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -48,5 +48,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>docker-spring-boot</finalName>
     </build>
 </project>
