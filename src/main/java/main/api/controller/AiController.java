@@ -92,4 +92,17 @@ public class AiController {
         }
         return nodes.toString();
     }
+
+    @RequestMapping("/language")
+    public String getLng(@RequestBody Article body) {
+        Manager manager = new Manager("detectLanguage", body.getContent());
+        JSONArray nodes = new JSONArray();
+        try {
+            List<String> result = manager.runPython();
+            result.forEach(line -> nodes.put(line));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nodes.toString();
+    }
 }
