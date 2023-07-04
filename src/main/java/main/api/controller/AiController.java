@@ -79,4 +79,17 @@ public class AiController {
         }
         return nodes.toString();
     }
+
+    @RequestMapping("/sentiment")
+    public String getSentiment(@RequestBody Article body) {
+        Manager manager = new Manager("sentiment", body.getContent());
+        JSONArray nodes = new JSONArray();
+        try {
+            List<String> result = manager.runPython();
+            result.forEach(line -> nodes.put(line));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nodes.toString();
+    }
 }
